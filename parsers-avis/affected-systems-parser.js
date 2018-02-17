@@ -9,7 +9,7 @@ exports.parse = (data) => {
     filter((i, elt) => $(elt).text() === 'Systèmes affectés')
     .next()
     .children('li')
-    .each((i, elt) => { systemesAffectes.push($(elt).text()) });
+    .each((i, elt) => { systemesAffectes.push({ ref: $(elt).text() }) });
 
   return { 'affectedSystems': systemesAffectes };
 };
