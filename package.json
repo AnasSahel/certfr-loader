@@ -4,7 +4,7 @@
   "description": "Module to load certfr from the CERT FR",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec --timeout 10000"
+    "test": "mocha --reporter spec"
   },
   "repository": {
     "type": "git",

@@ -5,8 +5,8 @@ exports.parse = (data) => {
   const $ = cheerio.load(data);
 
   $('.article-content > div > div')
-    .children('h2').
-    filter((i, elt) => $(elt).text() === 'Systèmes affectés')
+    .children('h2')
+    .filter((i, elt) => $(elt).text() === 'Systèmes affectés')
     .next()
     .children('li')
     .each((i, elt) => { systemesAffectes.push({ ref: $(elt).text() }) });
