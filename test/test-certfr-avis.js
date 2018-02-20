@@ -43,7 +43,7 @@ describe('Certfr Avis utils functions', () => {
 
 describe('Get avis from CERTFR', () => {
   it('Get avis without year', function(done) {
-    this.timeout(5000);
+    this.timeout(10000);
     loader.get(81).subscribe(bulletin => {
       expect(bulletin).to.be.an('object');
       expect(bulletin).to.have.property('reference').with.equal(loader.toId(81));
@@ -52,7 +52,7 @@ describe('Get avis from CERTFR', () => {
   });
 
   it('Get avis with year', function(done) {
-    this.timeout(5000);
+    this.timeout(10000);
     loader.get(81, 2017).subscribe(bulletin => {
       expect(bulletin).to.be.an('object');
       expect(bulletin).to.have.property('reference').with.equal(loader.toId(81, 2017));
