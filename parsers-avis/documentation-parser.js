@@ -9,7 +9,14 @@ exports.parse = (data) => {
     filter((i, elt) => $(elt).text() === 'Documentation')
     .next()
     .children('li')
-    .each((i, elt) => documentation.push($(elt).text().replace('\n', '')));
+    .filter((i, el) => !$(el).text().startsWith('Référence CVE CVE-'))
+    .each((i, el) => {
+      const splittedDoc = $(el).text().split('http');
+      documentation.push({
+        id: splittedDoc[0].trim(),
+        href: `http${splittedDoc[1].trim()}`
+      });
+    });
 
   return { 'documentation': documentation };
 };

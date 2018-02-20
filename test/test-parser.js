@@ -48,7 +48,13 @@ describe('Validate parsers', () => {
 
     it('Validate documentation parser', () => {
         expect(bulletin).to.have.property('documentation')
-        .with.to.be.a('array').with.lengthOf(3);
+        .with.to.be.a('array').with.lengthOf(1);
+
+        expect(bulletin.documentation[0]).to.have.property('id')
+        .with.equal('Bulletin de sécurité Microsoft du 13 février 2018');
+
+        expect(bulletin.documentation[0]).to.have.property('href')
+        .with.equal('https://portal.msrc.microsoft.com/fr-FR/security-guidance');
     });
 
     it('Validate cve parser', () => {
