@@ -14,7 +14,10 @@
     "js",
     "node",
     "cert",
-    "certfr"
+    "certfr",
+    "cert",
+    "vulnerability",
+    "loader"
   ],
   "author": "anas.sahel@gmail.com",
   "license": "Apache-2.0",
