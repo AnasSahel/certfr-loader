@@ -1,10 +1,11 @@
 {
   "name": "certfr-loader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Module to load certfr from the CERT FR",
-  "main": "dist/index",
-  "types": "dist/index",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
   "scripts": {
+    "prepublish": "npm run build",
     "build": "tsc",
     "start": "npm run build:live",
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts"

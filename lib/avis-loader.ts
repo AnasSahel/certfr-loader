@@ -1,5 +1,5 @@
 import { Parsers, Parser } from "./avis-types";
-import { Observable } from "rxjs";
+import { Observable } from "rxjs/Rx";
 import Axios, { AxiosResponse } from "axios";
 import { DefaultParsers } from "./avis-default-parsers";
 import { Avis } from "./avis";
