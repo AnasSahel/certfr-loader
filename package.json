@@ -1,6 +1,6 @@
 {
   "name": "certfr-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Module to load certfr from the CERT FR",
   "main": "lib/index",
   "types": "lib/index",
