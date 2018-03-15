@@ -1,6 +1,6 @@
 import { Parsers, CVE } from "./avis-types";
 import Cheerio from "cheerio";
-import { Avis } from "./avis";
+import Avis from "./avis";
 
 const months = ["janvier", "février", "mars", "avril", "mai", "juin",
     "juillet", "août", "septembre", "octobre", "novembre", "décembre"];

@@ -1,5 +1,5 @@
 import { CVE, Documentation } from "./avis-types";
-export interface Avis {
+export default interface Avis {
     reference: string;
     title: string;
     system: string;

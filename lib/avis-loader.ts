@@ -1,10 +1,11 @@
+import Avis from "./avis";
 import { Parsers, Parser } from "./avis-types";
+
 import { Observable } from "rxjs/Rx";
 import Axios, { AxiosResponse } from "axios";
 import { DefaultParsers } from "./avis-default-parsers";
-import { Avis } from "./avis";
 
-export class AvisLoader<T extends Avis> {
+export default class AvisLoader<T extends Avis> {
     private parsers: Parsers<T> = [];
 
     addParser(parser: Parser<T>) {

@@ -1,4 +1,4 @@
-import { Avis } from "./avis";
+import Avis from "./avis";
 
 export declare type Parser<T extends Avis> = (rawData: string, current: T) => void;
 export declare type Parsers<T extends Avis> = Array<Parser<T>>;

@@ -1,7 +1,7 @@
+import Avis from "./avis";
 import { Parsers, Parser } from "./avis-types";
 import { Observable } from "rxjs/Rx";
-import { Avis } from "./avis";
-export declare class AvisLoader<T extends Avis> {
+export default class AvisLoader<T extends Avis> {
     private parsers;
     addParser(parser: Parser<T>): void;
     get(id: number, year?: number): Observable<T>;

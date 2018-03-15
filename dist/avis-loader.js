@@ -44,4 +44,4 @@ class AvisLoader {
         return a;
     }
 }
-exports.AvisLoader = AvisLoader;
+exports.default = AvisLoader;
