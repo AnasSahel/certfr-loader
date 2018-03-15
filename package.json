@@ -2,9 +2,10 @@
   "name": "certfr-loader",
   "version": "1.0.1",
   "description": "Module to load certfr from the CERT FR",
-  "main": "lib/index",
-  "types": "lib/index",
+  "main": "dist/index",
+  "types": "dist/index",
   "scripts": {
+    "build": "tsc",
     "start": "npm run build:live",
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts"
   },
