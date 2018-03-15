@@ -10,6 +10,7 @@ The process is based on parsing the raw data to extract usefull information:
 * Date of the last version
 * Sources of the element
 * Risks
+* System
 * Systems affected by this vulnerability
 * Documentation, which may contain CVE references
 * CVE references related to the vulnerability
@@ -21,16 +22,19 @@ npm install a-sahel/certfr-loader --save
 
 ### Example
 ```
-const certfrLoader = require('certfr-loader');
+import { AvisLoader } from "./avis-loader";
+import { Avis } from "./avis";
 
-// Get the vulnerability with the ID 81
-certfrLoader.avis.get(81).subscribe(data => console.log(data));
+interface Toto extends Avis { z: string; }
 
-// Get the vulnerability with the ID 81 of year 2017
-certfrLoader.avis.get(81, 2017).subscribe(data => console.log(data));
+const avisLoader = AvisLoader.init<Toto>();
+
+avisLoader.get(118).subscribe((value: Avis) => {
+    console.log(value.system);
+});
 ```
 
-## Testing
+## Testing (TODO)
 To run tests, run the command
 ```
 npm test
