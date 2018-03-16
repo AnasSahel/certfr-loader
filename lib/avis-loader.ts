@@ -1,11 +1,9 @@
-import Avis from "./avis";
-import { Parsers, Parser } from "./avis-types";
-
-import { Observable } from "rxjs/Rx";
+import { Observable } from "rxjs";
 import Axios, { AxiosResponse } from "axios";
 import { DefaultParsers } from "./avis-default-parsers";
 
-export default class AvisLoader<T extends Avis> {
+
+class AvisLoader<T extends Avis> {
     private parsers: Parsers<T> = [];
 
     addParser(parser: Parser<T>) {
@@ -48,3 +46,23 @@ export default class AvisLoader<T extends Avis> {
         return a;
     }
 }
+
+export default interface Avis {
+    reference: string;
+    title: string;
+    system: string;
+    risks: string[];
+    sources: string[];
+    timestampFirstVersion: number;
+    timestampLastVersion: number;
+    affectedSys: string[];
+    documentation: Documentation[];
+    cve: CVE[];
+}
+
+export declare type Parser<T extends Avis> = (rawData: string, current: T) => void;
+export declare type Parsers<T extends Avis> = Array<Parser<T>>;
+
+export declare type CVE = { id: string; href: string; };
+export declare type Documentation = { id: string; href: string; };
+

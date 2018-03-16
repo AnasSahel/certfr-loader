@@ -1,5 +1,1 @@
-import AvisLoader from "./avis-loader";
-
-export {
-    AvisLoader
-}
+export * from "./avis-loader";
