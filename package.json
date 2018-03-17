@@ -1,6 +1,6 @@
 {
   "name": "certfr-loader",
-  "version": "1.0.4-rc4",
+  "version": "1.0.4-rc5",
   "description": "Module to load certfr from the CERT FR",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
     "prepublish": "npm run build",
     "build": "tsc",
     "start": "npm run build:live",
-    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts"
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./lib/index.ts"
   },
   "repository": {
     "type": "git",
