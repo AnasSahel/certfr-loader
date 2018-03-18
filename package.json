@@ -2,8 +2,8 @@
   "name": "certfr-loader",
   "version": "1.0.4-rc5",
   "description": "Module to load certfr from the CERT FR",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "typings": "./dist/index",
   "scripts": {
     "prepublish": "npm run build",
     "build": "tsc",

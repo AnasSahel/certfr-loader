@@ -57,7 +57,7 @@
     "skipLibCheck": true                      /* Workaround for rxjs */
   },
   "include": [
-    "lib"
+    "lib/**/*"
   ],
   "exclude": [
     "node_modules",

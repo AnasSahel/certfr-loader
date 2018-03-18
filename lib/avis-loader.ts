@@ -3,7 +3,7 @@ import Axios, { AxiosResponse } from "axios";
 import { DefaultParsers } from "./avis-default-parsers";
 
 
-export default class AvisLoader<T extends Avis> {
+export class AvisLoader<T extends Avis> {
     private parsers: Parsers<T> = [];
 
     addParser(parser: Parser<T>) {
