@@ -22,8 +22,7 @@ npm install a-sahel/certfr-loader --save
 
 ### Example
 ```
-import { AvisLoader } from "./avis-loader";
-import { Avis } from "./avis";
+import { AvisLoader, Avis } from "./certfr-loader";
 
 interface Toto extends Avis { z: string; }
 
