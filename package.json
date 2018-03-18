@@ -1,6 +1,6 @@
 {
   "name": "certfr-loader",
-  "version": "1.0.4-rc5",
+  "version": "1.0.4-rc6",
   "description": "Module to load certfr from the CERT FR",
   "main": "./dist/index.js",
   "typings": "./dist/index",
