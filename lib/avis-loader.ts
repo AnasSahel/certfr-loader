@@ -1,6 +1,7 @@
 import { Observable } from "rxjs";
 import Axios, { AxiosResponse } from "axios";
 import { DefaultParsers } from "./avis-default-parsers";
+import Cheerio from "cheerio";
 
 
 export class AvisLoader<T extends Avis> {
@@ -25,6 +26,16 @@ export class AvisLoader<T extends Avis> {
         });
 
         return avis;
+    }
+
+    static lastId(): Observable<any> {
+        return Observable.fromPromise(Axios.get('https://cert.ssi.gouv.fr/avis/feed/'))
+        .filter((value: AxiosResponse<any>) => value.status === 200)
+        .map((value: AxiosResponse) => {
+            const $ = Cheerio.load(value.data, { xmlMode: true, normalizeWhitespace: true });
+            const splittedCertId = $('title', $('item').first()).text().trim().split(":")[0].trim().split("-");
+            return { year: parseInt(splittedCertId[1]), id: parseInt(splittedCertId[3]) };
+        });
     }
 
     static toId(id: number, year?: number): string {
