@@ -28,14 +28,15 @@ export class AvisLoader<T extends Avis> {
         return avis;
     }
 
-    static lastId(): Observable<any> {
-        return Observable.fromPromise(Axios.get('https://cert.ssi.gouv.fr/avis/feed/'))
-        .filter((value: AxiosResponse<any>) => value.status === 200)
-        .map((value: AxiosResponse) => {
-            const $ = Cheerio.load(value.data, { xmlMode: true, normalizeWhitespace: true });
+    static async lastId(): Promise<any> {
+        const result = await Axios.get('https://cert.ssi.gouv.fr/avis/feed/');
+        if (result.status === 200) {
+            const $ = Cheerio.load(result.data, { xmlMode: true, normalizeWhitespace: true });
             const splittedCertId = $('title', $('item').first()).text().trim().split(":")[0].trim().split("-");
             return { year: parseInt(splittedCertId[1]), id: parseInt(splittedCertId[3]) };
-        });
+        } else {
+            return null;
+        }
     }
 
     static toId(id: number, year?: number): string {
