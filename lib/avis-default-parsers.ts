@@ -84,12 +84,17 @@ export const DefaultParsers: Parsers<Avis> = [
 
         const $ = Cheerio.load(rawData);
 
-        $('.article-content > div > div')
+        const targetElement = $('.article-content > div > div')
             .children('h2')
             .filter((i, elt) => $(elt).text() === 'Systèmes affectés')
-            .next()
-            .children('li')
-            .each((i: number, elt: CheerioElement) => { current.affectedSys.push($(elt).text()) });
+            .next();
+
+        if (targetElement.children('li').length === 0) {
+            current.affectedSys.push(targetElement.children('p').eq(0).text());
+        } else {
+            targetElement.children('li')
+                .each((i: number, elt: CheerioElement) => { current.affectedSys.push($(elt).text()) });
+        }
     },
 
     // Documentation
