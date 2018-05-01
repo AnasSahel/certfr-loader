@@ -1,4 +1,3 @@
-import { Observable } from "rxjs";
 import Axios, { AxiosResponse } from "axios";
 import { DefaultParsers } from "./avis-default-parsers";
 import Cheerio from "cheerio";
@@ -11,11 +10,12 @@ export class AvisLoader<T extends Avis> {
         this.parsers.push(parser);
     }
 
-    get(id: number, year?: number): Observable<T> {
-        return Observable.fromPromise(Axios.get(AvisLoader.toUrl(id, year)))
-        .filter((value: AxiosResponse<any>) => value.status === 200)
-        .map((value: AxiosResponse) => value.data)
-        .map((value: string) => this.parse(value));
+    async get(id: number, year?: number): Promise<T|null> {
+        const response = await Axios.get(AvisLoader.toUrl(id, year));
+        if (response.status === 200) {
+            return this.parse(response.data);
+        }
+        return null;
     }
 
     private parse(rawData: string): T {

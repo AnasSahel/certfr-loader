@@ -1,6 +1,6 @@
 {
   "name": "certfr-loader",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Module to load certfr from the CERT FR",
   "main": "./dist/index.js",
   "typings": "./dist/index",
@@ -43,7 +43,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "cheerio": "^1.0.0-rc.2",
-    "rxjs": "^5.5.7"
+    "cheerio": "^1.0.0-rc.2"
   }
 }
