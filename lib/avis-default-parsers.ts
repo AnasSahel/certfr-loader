@@ -90,7 +90,7 @@ export const DefaultParsers: Parsers<Avis> = [
             .next();
 
         if (targetElement.children('li').length === 0) {
-            current.affectedSys.push(targetElement.children('p').eq(0).text());
+            current.affectedSys.push(targetElement.text());
         } else {
             targetElement.children('li')
                 .each((i: number, elt: CheerioElement) => { current.affectedSys.push($(elt).text()) });
