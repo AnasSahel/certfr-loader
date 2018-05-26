@@ -21,19 +21,19 @@ export const DefaultParsers: Parsers<Avis> = [
         const title = current.title;
 
         if (title.startsWith("Multiples vulnérabilités dans le noyau Linux de ")) {
-            current.system = title.replace("Multiples vulnérabilités dans le noyau Linux de ", "");
+            current.product = title.replace("Multiples vulnérabilités dans le noyau Linux de ", "");
         } else if (title.startsWith("Multiples vulnérabilités dans le noyau Linux d’")) {
-            current.system = title.replace("Multiples vulnérabilités dans le noyau Linux d’", "");
+            current.product = title.replace("Multiples vulnérabilités dans le noyau Linux d’", "");
         } else if (title.startsWith("Multiples vulnérabilités dans les produits ")) {
-            current.system = title.replace("Multiples vulnérabilités dans les produits ", "");
+            current.product = title.replace("Multiples vulnérabilités dans les produits ", "");
         } else if (title.startsWith("Multiples vulnérabilités dans ")) {
-            current.system = title.replace("Multiples vulnérabilités dans ", "");
+            current.product = title.replace("Multiples vulnérabilités dans ", "");
         } else if (title.startsWith("Vulnérabilité dans le noyau Linux d’")) {
-            current.system = title.replace("Vulnérabilité dans le noyau Linux d’", "");
+            current.product = title.replace("Vulnérabilité dans le noyau Linux d’", "");
         } else if (title.startsWith("Vulnérabilité dans le noyau Linux de ")) {
-            current.system = title.replace("Vulnérabilité dans le noyau Linux de ", "");
+            current.product = title.replace("Vulnérabilité dans le noyau Linux de ", "");
         } else if (title.startsWith("Vulnérabilité dans ")) {
-            current.system = title.replace("Vulnérabilité dans ", "");
+            current.product = title.replace("Vulnérabilité dans ", "");
         }
     },
 
@@ -64,7 +64,7 @@ export const DefaultParsers: Parsers<Avis> = [
         const year = parseInt(d[2]);
         const month = months.indexOf(d[1]);
 
-        current.timestampFirstVersion = (new Date(year, month, day)).getTime();
+        current.timestampFirstVersion = new Date(year, month, day).getTime() / 1000|0;
     },
 
     // Timestamp last version
@@ -75,12 +75,12 @@ export const DefaultParsers: Parsers<Avis> = [
         const year = parseInt(d[2]);
         const month = months.indexOf(d[1]);
 
-        current.timestampLastVersion = (new Date(year, month, day)).getTime();
+        current.timestampLastVersion = new Date(year, month, day).getTime() / 1000|0;
     },
 
     // Affected systems
     (rawData: string, current: Avis): void => {
-        current.affectedSys = [];
+        current.impactedSystems = [];
 
         const $ = Cheerio.load(rawData);
 
@@ -90,10 +90,10 @@ export const DefaultParsers: Parsers<Avis> = [
             .next();
 
         if (targetElement.children('li').length === 0) {
-            current.affectedSys.push(targetElement.text());
+            current.impactedSystems.push(targetElement.text());
         } else {
             targetElement.children('li')
-                .each((i: number, elt: CheerioElement) => { current.affectedSys.push($(elt).text()) });
+                .each((i: number, elt: CheerioElement) => { current.impactedSystems.push($(elt).text()) });
         }
     },
 
