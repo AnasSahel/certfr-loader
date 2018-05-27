@@ -19,22 +19,25 @@ export const DefaultParsers: Parsers<Avis> = [
     // System
     (rawData: string, current: Avis): void => {
         const title = current.title;
+        let productsStr = "";
 
         if (title.startsWith("Multiples vulnérabilités dans le noyau Linux de ")) {
-            current.product = title.replace("Multiples vulnérabilités dans le noyau Linux de ", "");
+            productsStr = title.replace("Multiples vulnérabilités dans le noyau Linux de ", "");
         } else if (title.startsWith("Multiples vulnérabilités dans le noyau Linux d’")) {
-            current.product = title.replace("Multiples vulnérabilités dans le noyau Linux d’", "");
+            productsStr = title.replace("Multiples vulnérabilités dans le noyau Linux d’", "");
         } else if (title.startsWith("Multiples vulnérabilités dans les produits ")) {
-            current.product = title.replace("Multiples vulnérabilités dans les produits ", "");
+            productsStr = title.replace("Multiples vulnérabilités dans les produits ", "");
         } else if (title.startsWith("Multiples vulnérabilités dans ")) {
-            current.product = title.replace("Multiples vulnérabilités dans ", "");
+            productsStr = title.replace("Multiples vulnérabilités dans ", "");
         } else if (title.startsWith("Vulnérabilité dans le noyau Linux d’")) {
-            current.product = title.replace("Vulnérabilité dans le noyau Linux d’", "");
+            productsStr = title.replace("Vulnérabilité dans le noyau Linux d’", "");
         } else if (title.startsWith("Vulnérabilité dans le noyau Linux de ")) {
-            current.product = title.replace("Vulnérabilité dans le noyau Linux de ", "");
+            productsStr = title.replace("Vulnérabilité dans le noyau Linux de ", "");
         } else if (title.startsWith("Vulnérabilité dans ")) {
-            current.product = title.replace("Vulnérabilité dans ", "");
+            productsStr = title.replace("Vulnérabilité dans ", "");
         }
+
+        current.products = productsStr.split(" et ");
     },
 
     // Risks

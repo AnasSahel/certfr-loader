@@ -62,7 +62,7 @@ export class AvisLoader<T extends Avis> {
 export interface Avis {
     reference: string;
     title: string;
-    product: string;
+    products: string[];
     risks: string[];
     sources: string[];
     timestampFirstVersion: number;
