@@ -1,5 +1,6 @@
 # certfr-loader
 A Node.js module to download vulnerabilities from CERTFR (https://www.cert.ssi.gouv.fr/avis/).
+TODO: out-dated
 
 ## Getting started
 The process is based on parsing the raw data to extract usefull information:
