@@ -1,2 +1,2 @@
-export * from "./avis/avis-loader";
-export * from "./avis/avis-default-parsers";
+export * from "./avis-loader";
+export * from "./avis-default-parsers";

@@ -1,5 +1,5 @@
 import Cheerio from "cheerio";
-import { Parsers } from "..";
+import { Parsers } from ".";
 
 const months = ["janvier", "février", "mars", "avril", "mai", "juin",
     "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
