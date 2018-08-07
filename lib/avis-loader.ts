@@ -26,9 +26,7 @@ export class AvisLoader {
   private parse(rawData: string): any {
     let avis: any = {};
 
-    for (const key in this.parsers) {
-      avis[key] = this.parsers[key](rawData, avis);
-    }
+    this.parsers.forEach((p: Parser) => p(rawData, avis));
 
     return avis;
   }
