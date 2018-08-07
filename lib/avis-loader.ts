@@ -1,18 +1,16 @@
 import Axios, { AxiosResponse } from "axios";
 import Cheerio from "cheerio";
 
-export declare type Parser = (rawData: string, current: any) => any; // Parser type
-export interface Parsers {
-  [index: string]: Parser;
-}
+export declare type Parser = (rawData: string, current: any) => void; // Parser type
+export declare type Parsers = Parser[];
 
 export class AvisLoader {
   // TODO: set it to default parsers?
-  constructor(private parsers: Parsers = {}) {}
+  constructor(private parsers: Parsers = []) {}
 
   // Add a new parser
   addParser(key: string, parser: Parser) {
-    this.parsers[key] = parser;
+    this.parsers.push(parser);
   }
 
   // Get one avis

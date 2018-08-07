@@ -5,17 +5,17 @@ const months = ["janvier", "février", "mars", "avril", "mai", "juin",
     "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
 
 
-export const DefaultParsers: Parsers = {};
+export const DefaultParsers: Parsers = [];
 
-DefaultParsers["reference"] = (rawData: string, current: any): string => {
-    return Cheerio.load(rawData)('.article-meta .meta-table tr').eq(0).children().last().text();
-};
+DefaultParsers.push((rawData: string, current: any): void => {
+    current.reference = Cheerio.load(rawData)('.article-meta .meta-table tr').eq(0).children().last().text();
+});
 
-DefaultParsers["title"] = (rawData: string, current: any): string => {
-    return Cheerio.load(rawData)('.article-meta .meta-table tr').eq(1).children().last().text();
-};
+DefaultParsers.push((rawData: string, current: any): void => {
+    current.title = Cheerio.load(rawData)('.article-meta .meta-table tr').eq(1).children().last().text();
+});
 
-DefaultParsers["risks"] = (rawData: string, current: any): string[] => {
+DefaultParsers.push((rawData: string, current: any): void => {
     let risks: string[] = [];
 
     const $ = Cheerio.load(rawData);
@@ -27,34 +27,34 @@ DefaultParsers["risks"] = (rawData: string, current: any): string[] => {
         .children('li')
         .each((i, elt) => { risks.push($(elt).text()) });
 
-    return risks;
-};
+    current.risks = risks;
+});
 
-DefaultParsers["sources"] = (rawData: string, current: any): string[] => {
-    return Cheerio.load(rawData)('.article-meta .meta-table tr').eq(4).children().last().text().split('\n');
-};
+DefaultParsers.push((rawData: string, current: any): void => {
+    current.sources = Cheerio.load(rawData)('.article-meta .meta-table tr').eq(4).children().last().text().split('\n');
+});
 
-DefaultParsers["timestampFirstVersion"] = (rawData: string, current: any): number => {
+DefaultParsers.push((rawData: string, current: any): void => {
     const d = Cheerio.load(rawData)('.article-meta .meta-table tr').eq(2).children().last().text().split(" ");
 
     const day = parseInt(d[0]);
     const year = parseInt(d[2]);
     const month = months.indexOf(d[1]);
 
-    return new Date(year, month, day).getTime() / 1000 | 0;
-};
+    current.timestampFirstVersion = new Date(year, month, day).getTime() / 1000 | 0;
+});
 
-DefaultParsers["timestampLastVersion"] = (rawData: string, current: any): number => {
+DefaultParsers.push((rawData: string, current: any): void => {
     const d = Cheerio.load(rawData)('.article-meta .meta-table tr').eq(3).children().last().text().split(" ");
 
     const day = parseInt(d[0]);
     const year = parseInt(d[2]);
     const month = months.indexOf(d[1]);
 
-    return new Date(year, month, day).getTime() / 1000 | 0;
-};
+    current.timestampLastVersion = new Date(year, month, day).getTime() / 1000 | 0;
+});
 
-DefaultParsers["impactedSystems"] = (rawData: string, current: any): string[] => {
+DefaultParsers.push((rawData: string, current: any): void => {
     let impactedSystems: string[] = [];
 
     const $ = Cheerio.load(rawData);
@@ -71,10 +71,10 @@ DefaultParsers["impactedSystems"] = (rawData: string, current: any): string[] =>
             .each((i: number, elt: CheerioElement) => { impactedSystems.push($(elt).text()) });
     }
 
-    return impactedSystems;
-};
+    current.impactedSystems = impactedSystems;
+});
 
-DefaultParsers["documentation"] = (rawData: string, current: any): any[] => {
+DefaultParsers.push((rawData: string, current: any): void => {
     let documentation: any[] = [];
 
     const $ = Cheerio.load(rawData);
@@ -93,10 +93,10 @@ DefaultParsers["documentation"] = (rawData: string, current: any): any[] => {
             });
         });
 
-    return documentation;
-};
+    current.documentation = documentation;
+});
 
-DefaultParsers["cve"] = (rawData: string, current: any): any[] => {
+DefaultParsers.push((rawData: string, current: any): void => {
     let cve: any[] = [];
     const $ = Cheerio.load(rawData);
 
@@ -114,8 +114,8 @@ DefaultParsers["cve"] = (rawData: string, current: any): any[] => {
             });
         });
         
-    return cve;
-};
+    current.cve = cve;
+});
 
 
 /*
