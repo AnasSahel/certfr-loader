@@ -9,7 +9,7 @@ export class AvisLoader {
   constructor(private parsers: Parsers = []) {}
 
   // Add a new parser
-  addParser(key: string, parser: Parser) {
+  addParser(parser: Parser) {
     this.parsers.push(parser);
   }
 
