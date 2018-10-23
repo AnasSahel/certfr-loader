@@ -23,13 +23,11 @@ npm install a-sahel/certfr-loader --save
 
 ### Example
 ```
-import { AvisLoader, Avis } from "./certfr-loader";
+import { AvisLoader } from "./certfr-loader";
 
-interface Toto extends Avis { z: string; }
+let avisLoader = new AvisLoader();
 
-const avisLoader = AvisLoader.init<Toto>();
-
-avisLoader.get(118).subscribe((value: Avis) => {
+avisLoader.get(118).then(value => {
     console.log(value.system);
 });
 ```
