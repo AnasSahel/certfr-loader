@@ -1,6 +1,6 @@
 {
   "name": "certfr-loader",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Module to load certfr from the CERT FR",
   "main": "./dist/index.js",
   "typings": "./dist/index",
@@ -34,9 +34,9 @@
   },
   "homepage": "https://github.com/a-sahel/certfr-loader#readme",
   "devDependencies": {
-    "@types/cheerio": "^0.22.8",
-    "@types/node": "^9.6.25",
-    "nodemon": "^1.18.3",
+    "@types/cheerio": "^0.22.9",
+    "@types/node": "^9.6.35",
+    "nodemon": "^1.18.4",
     "ts-node": "^5.0.1",
     "typescript": "^2.9.2",
     "typings": "^2.1.1"
